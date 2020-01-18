@@ -1,5 +1,7 @@
 package com.itheima.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -47,6 +49,11 @@ public class CheckItemServiceImpl implements CheckItemService{
 	public void edit(CheckItem checkItem) {
 		// TODO Auto-generated method stub
 		checkItemMapper.edit(checkItem);
+	}
+	@Override
+	public List<CheckItem> findAll() {
+		// TODO Auto-generated method stub
+		return checkItemMapper.findAll();
 	}
 
 }

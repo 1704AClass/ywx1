@@ -1,5 +1,7 @@
 package com.itheima.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,5 +74,16 @@ public class CheckItemController {
 			//服务调用失败
 			return new Result(false, MessageConstant.QUERY_CHECKITEM_FAIL);
 		}
+	}
+	@RequestMapping("/findAll")
+	public Result findAll(){
+		List<CheckItem> checkItemlist=checkItemService.findAll();
+		if(checkItemlist!=null&& checkItemlist.size()>0){
+			Result result = new Result(true, MessageConstant.QUERY_CHECKITEM_SUCCESS);
+			result.setData(checkItemlist);
+			return result;
+		}
+		return new Result(false, MessageConstant.QUERY_CHECKITEM_FAIL);
+		
 	}
 }
