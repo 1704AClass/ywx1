@@ -7,19 +7,21 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
- <context:property-placeholder location="classpath*:properties/*.properties" />   
-   <!-- redis 相关配置 --> 
-   <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">  
-     <property name="maxIdle" value="${redis.maxIdle}" />   
-     <property name="maxWaitMillis" value="${redis.maxWait}" />  
-     <property name="testOnBorrow" value="${redis.testOnBorrow}" />  
-   </bean>  
-   <bean id="JedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" 
-       p:host-name="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:pool-config-ref="poolConfig"/>  
-   
-   <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">  
-     <property name="connectionFactory" ref="JedisConnectionFactory" />  
-   </bean>  
-
+	
+	<bean id="jedisPoolConfig"  class="redis.clients.jedis.JedisPoolConfig">      
+	<property name="maxTotal">
+		<value>${redis.pool.maxActive}</value>
+	</property>
+	<property name="maxIdle">
+		<value>${redis.pool.maxIdle}</value>
+	</property>
+	<property name="testOnBorrow" value="true"/>
+	<property name="testOnReturn" value="true"/>
+	</bean>
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor‐arg name="poolConfig" ref="jedisPoolConfig" /> 
+		<constructor‐arg name="host" value="${redis.host}" />      
+		<constructor‐arg name="port" value="${redis.port}" type="int" />
+		<constructor‐arg name="timeout" value="${redis.timeout}"  type="int" />      
+	</bean>
 </beans>

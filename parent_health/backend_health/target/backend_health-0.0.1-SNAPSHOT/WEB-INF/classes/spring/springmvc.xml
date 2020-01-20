@@ -33,5 +33,5 @@
 		<property name="maxUploadSize" value="5242880"></property>
 		<property name="maxInMemorySize" value="4096"></property>
 	</bean>
-	<!-- <import resource="classpath:spring/spring-redis.xml"/> -->
+	<import resource="classpath:spring/spring-redis.xml"/>
 </beans>

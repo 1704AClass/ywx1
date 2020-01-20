@@ -18,6 +18,10 @@ public interface SetmealMapper {
 	void setSetmealAndCheckGroup(Map<String, Integer> map);
 
 	Page<Setmeal> findPage(String queryString);
+	@Select(value="select * from t_setmeal")
+	List<Setmeal> findAll();
+	@Select(value="select * from t_setmeal  where id=#{id}")
+	Setmeal findById(int id);
 
 
 }

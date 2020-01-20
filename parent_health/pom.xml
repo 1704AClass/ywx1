@@ -256,5 +256,6 @@
   	<module>interface_health</module>
   	<module>backend_health</module>
   	<module>provider_service_health</module>
+  	<module>health_mobile</module>
   </modules>
 </project>
