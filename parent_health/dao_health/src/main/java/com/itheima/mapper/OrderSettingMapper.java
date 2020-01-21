@@ -22,6 +22,10 @@ public interface OrderSettingMapper {
 	List<OrderSetting> getOrderSettingByMonth(Map map);
 	@Update(value="update t_ordersetting set number = #{number} where orderDate=#{orderDate} ")
 	void editNumberByOrderDate(OrderSetting orderSetting);
+	@Update(value="update t_ordersetting set reservations = #{reservations} where  orderDate = #{orderDate} ")
+	void editReservationsByOrderDate(OrderSetting orderSetting);
+	@Select(value="select * from t_ordersetting where orderDate = #{orderDate} ")
+	OrderSetting findByOrderDate(Date date);
 
 
 }
