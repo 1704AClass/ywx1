@@ -2,6 +2,7 @@ package com.itheima.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class CheckItemController {
 	
     private CheckItemService checkItemService;
 	//添加
+	@PreAuthorize("hasAuthority('CHECKITEM_ADD')")
 	@RequestMapping("/add")
 	public Result add(@RequestBody CheckItem checkItem){
 		try {
@@ -35,6 +37,7 @@ public class CheckItemController {
 		return new Result(true, MessageConstant.ADD_CHECKITEM_SUCCESS);
 	}
 	//列表
+	@PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
 	@RequestMapping("/findPage")
 	public PageResult findPage(@RequestBody QueryPageBean queryPageBean){
 		PageResult pageResult=checkItemService.findPage(
@@ -44,6 +47,7 @@ public class CheckItemController {
 		return pageResult;
 	}
 	//删除
+	@PreAuthorize("hasAuthority('CHECKITEM_DELETE')")
 	@RequestMapping("/delete")
 	public Result delete(Integer id){
 		try {
@@ -56,6 +60,7 @@ public class CheckItemController {
 		return new Result(false, MessageConstant.DELETE_CHECKITEM_SUCCESS);
 	}
 	//编辑
+	@PreAuthorize("hasAuthority('CHECKITEM_EDIT')")
 	@RequestMapping("/edit")
 	public Result edit(@RequestBody CheckItem checkItem){
 		try {

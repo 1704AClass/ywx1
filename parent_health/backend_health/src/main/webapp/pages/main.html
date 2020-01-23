@@ -37,7 +37,7 @@
                         <el-dropdown class="avatar-container right-menu-item" trigger="click">
                             <div class="avatar-wrapper">
                                 <img src="../img/user2-160x160.jpg" class="user-avatar">
-                                Jay.Liu
+                                {{loginName}}
                             </div>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item divided>
@@ -184,7 +184,7 @@
         },
         methods:{
         	loginName(){
-        		axios.post("/itheima/loginName.do").then((res)=>{
+        		axios.post("/user/getUsername.do").then((res)=>{
                     this.loginName = res;
                     console.log(loginName);
                 })

@@ -24,21 +24,13 @@
 		<headers>
 			<frame-options policy="SAMEORIGIN"/>
 		</headers>
-		<logout/>
-		
+		<logout logout-url="/logout.do" logout-success-url="/login.html" invalidate-session="true"/>
 	</http>
-	
-	<!-- 认证管理器 -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<authentication-manager>
-		<authentication-provider user-service-ref="userDetailService">
-			
-		</authentication-provider>	
+		<authentication-provider user‐serviceref="springSecurityUserService">
+		<password-encoder ref="passwordEncoder"/> 
+		</authentication-provider>
 	</authentication-manager>
-	
-	<beans:bean id="userDetailService" class="com.lianxi1.service.UserDetailsServiceImpl">
-		<beans:property name="userService" ref="userService"></beans:property>
-	</beans:bean>
-	<dubbo:application name="lianxi1-web" />
-	<dubbo:registry address="zookeeper://39.105.205.210:2181"/>
-	<dubbo:reference id="userService"  interface="com.lianxi1.service.UserService" ></dubbo:reference>
+	<global-method-security pre‐post‐annotations="enabled"/> 
 </beans:beans>

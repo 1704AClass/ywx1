@@ -1,5 +1,8 @@
 package com.itheima.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
@@ -25,6 +28,18 @@ public class MemberServiceImpl implements MemberService {
 			member.setPassword(MD5Utils.md5(member.getPassword()));
 		}
 		memberMapper.add(member);
+	}
+
+	@Override
+	public List<Integer> findMemberCountByMonth(List<String> month) {
+		// TODO Auto-generated method stub
+		List<Integer> list=new ArrayList<>();
+		for (String m : month) {
+			m=m+".31";
+			Integer count=memberMapper.findMemberCountByMonth(m);
+			list.add(count);
+		}
+		return list;
 	}
 
 }

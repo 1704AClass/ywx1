@@ -25,7 +25,7 @@
 	<!-- 引用dubbo 服务 -->
 	<dubbo:application name="health_backend"/>
 	<dubbo:registry address="zookeeper://39.105.205.210:2181"/>
-	<dubbo:annotation package="com.itheima.controller"/>
+	<dubbo:annotation package="com.itheima" />
 	<dubbo:consumer timeout="600000" check="false"></dubbo:consumer>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="UTF-8"></property>
@@ -33,5 +33,6 @@
 		<property name="maxUploadSize" value="5242880"></property>
 		<property name="maxInMemorySize" value="4096"></property>
 	</bean>
+	<import resource="spring-security.xml"></import>
 	<import resource="classpath:spring/spring-redis.xml"/>
 </beans>

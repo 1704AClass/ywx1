@@ -12,10 +12,12 @@ import com.itheima.pojo.CheckGroup;
 import com.itheima.pojo.Member;
 
 public interface MemberMapper {
-	@Select(value="select * from t_member where phoneNumber = #{phoneNumber} ")
+	@Select(value="select * from t_member where phoneNumber = #{phoneNumber}")
 	Member findByTelephone(String telephone);
 
 	void add(Member member);
+	@Select(value="select count(id) from t_member where regTime &lt;= #{value}")
+	Integer findMemberCountByMonth(String m);
 
 
 }
