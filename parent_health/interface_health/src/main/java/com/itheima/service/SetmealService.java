@@ -1,6 +1,7 @@
 package com.itheima.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.itheima.entity.PageResult;
@@ -15,5 +16,7 @@ public interface SetmealService {
 	List<Setmeal> findAll();
 
 	Setmeal findById(int id);
+
+	List<Map<String, Object>> findSetmealCount();
 
 }

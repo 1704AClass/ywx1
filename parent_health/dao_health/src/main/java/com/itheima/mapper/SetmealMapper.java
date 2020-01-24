@@ -22,6 +22,8 @@ public interface SetmealMapper {
 	List<Setmeal> findAll();
 	@Select(value="select * from t_setmeal  where id=#{id}")
 	Setmeal findById(int id);
+	@Select(value="select s.name,count(o.id) as value from t_order o ,t_setmeal s where o.setmeal_id = s.id group by s.name")
+	List<Map<String, Object>> findSetmealCount();
 
 
 }

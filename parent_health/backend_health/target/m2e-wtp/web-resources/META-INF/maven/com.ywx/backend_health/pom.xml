@@ -8,6 +8,11 @@
   <artifactId>backend_health</artifactId>
   <packaging>war</packaging>
   <dependencies>
+  <dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>servlet-api</artifactId>	
+		<scope>provided</scope>
+	</dependency> 
   	<dependency>
   		<groupId>com.ywx</groupId>
   		<artifactId>interface_health</artifactId>

@@ -18,6 +18,12 @@ public interface MemberMapper {
 	void add(Member member);
 	@Select(value="select count(id) from t_member where regTime &lt;= #{value}")
 	Integer findMemberCountByMonth(String m);
+	@Select(value="select count(id) from t_member where regTime = #{value}")
+	Integer findMemberCountByDate(String today);
+	@Select(value="select count(id) from t_member")
+	Integer findMemberTotalCount();
+	@Select(value="select count(id) from t_order where orderDate &gt;= #{value}")
+	Integer findMemberCountAfterDate(String thisWeekMonday);
 
 
 }
